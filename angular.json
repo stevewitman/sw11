@@ -21,10 +21,7 @@
             "polyfills": "apps/sw11/src/polyfills.ts",
             "tsConfig": "apps/sw11/tsconfig.app.json",
             "aot": true,
-            "assets": [
-              "apps/sw11/src/favicon.ico",
-              "apps/sw11/src/assets"
-            ],
+            "assets": ["apps/sw11/src/favicon.ico", "apps/sw11/src/assets"],
             "styles": [
               "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
               "apps/sw11/src/styles.scss"
@@ -86,10 +83,7 @@
               "apps/sw11/tsconfig.app.json",
               "apps/sw11/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**",
-              "!apps/sw11/**"
-            ]
+            "exclude": ["**/node_modules/**", "!apps/sw11/**"]
           }
         },
         "test": {
@@ -124,13 +118,8 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": [
-              "apps/sw11-e2e/tsconfig.e2e.json"
-            ],
-            "exclude": [
-              "**/node_modules/**",
-              "!apps/sw11-e2e/**"
-            ]
+            "tsConfig": ["apps/sw11-e2e/tsconfig.e2e.json"],
+            "exclude": ["**/node_modules/**", "!apps/sw11-e2e/**"]
           }
         }
       }
@@ -148,10 +137,7 @@
               "libs/material/tsconfig.lib.json",
               "libs/material/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/material/**"
-            ]
+            "exclude": ["**/node_modules/**", "!libs/material/**"]
           }
         },
         "test": {
@@ -183,10 +169,7 @@
               "libs/core-data/tsconfig.lib.json",
               "libs/core-data/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/core-data/**"
-            ]
+            "exclude": ["**/node_modules/**", "!libs/core-data/**"]
           }
         },
         "test": {
@@ -218,10 +201,7 @@
               "libs/ui-toolbar/tsconfig.lib.json",
               "libs/ui-toolbar/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/ui-toolbar/**"
-            ]
+            "exclude": ["**/node_modules/**", "!libs/ui-toolbar/**"]
           }
         },
         "test": {
@@ -231,6 +211,38 @@
             "tsConfig": "libs/ui-toolbar/tsconfig.spec.json",
             "passWithNoTests": true,
             "setupFile": "libs/ui-toolbar/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "styleext": "scss"
+        }
+      }
+    },
+    "core-state": {
+      "projectType": "library",
+      "root": "libs/core-state",
+      "sourceRoot": "libs/core-state/src",
+      "prefix": "bb",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/core-state/tsconfig.lib.json",
+              "libs/core-state/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/core-state/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/core-state/jest.config.js",
+            "tsConfig": "libs/core-state/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "libs/core-state/src/test-setup.ts"
           }
         }
       },

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Project, ProjectsService } from '@bb/core-data';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
+import { ProjectsFacade } from '@bb/core-state';
 
 @Component({
   selector: 'bb-projects',
@@ -9,55 +10,20 @@ import { Observable } from 'rxjs';
   styleUrls: ['./projects.component.scss']
 })
 export class ProjectsComponent implements OnInit {
-  projects$: Observable<Project[]>
+  projects$: Observable<Project[]> = this.projectsFacade.allProject$;
   project: Project;
   form: FormGroup;
 
   constructor(
     private projectsService: ProjectsService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private projectsFacade: ProjectsFacade
   ) { }
 
   ngOnInit(): void {
-    this.getProjects();
     this.initForm();
-  }
-
-  select(project: Project) {
-    this.project = project;
-    this.form.patchValue(project);
-  }
-
-  save(project: Project) {
-    if (project.id) {
-      this.update(project);
-    } else {
-      this.create(project);
-    }
-  }
-
-  create(project: Project) {
-    this.projectsService.create(project)
-      .subscribe(() => {
-        this.reset();
-        this.getProjects();
-      })
-  }
-
-  update(project: Project) {
-    this.projectsService.update(project)
-      .subscribe(() => {
-        this.reset();
-        this.getProjects();
-      })
-  }
-
-  delete(project: Project) {
-    this.projectsService.delete(project)
-      .subscribe(() => {
-        this.reset();
-        this.getProjects();
-      })
+    this.projectsFacade.loadProjects();
+    this.projectsFacade.mutations$.subscribe(() => this.reset());
   }
 
   reset() {
@@ -68,9 +34,31 @@ export class ProjectsComponent implements OnInit {
     })
   }
 
-  private getProjects() {
-    this.projects$ = this.projectsService.all();
+  select(project: Project) {
+    this.projectsFacade.selectProject(project.id);
+    this.form.patchValue(project);
   }
+
+  create() {
+    this.projectsFacade.createProject(this.form.value);
+  }
+
+  update() {
+    this.projectsFacade.updateProject(this.form.value);
+  }
+
+  save(project: Project) {
+    if (project.id) {
+      this.update();
+    } else {
+      this.create();
+    }
+  }
+
+  delete(project: Project) {
+    this.projectsFacade.deleteProject(project)
+  }
+
 
   private initForm() {
     this.form = this.formBuilder.group({

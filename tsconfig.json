@@ -18,7 +18,8 @@
     "paths": {
       "@bb/material": ["libs/material/src/index.ts"],
       "@bb/core-data": ["libs/core-data/src/index.ts"],
-      "@bb/ui-toolbar": ["libs/ui-toolbar/src/index.ts"]
+      "@bb/ui-toolbar": ["libs/ui-toolbar/src/index.ts"],
+      "@bb/core-state": ["libs/core-state/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

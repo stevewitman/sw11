@@ -6,10 +6,16 @@ import { MaterialModule } from '@bb/material';
 import { UiToolbarModule } from '@bb/ui-toolbar';
 import { CoreDataModule } from '@bb/core-data';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ProjectsComponent } from './projects/projects.component';
+import { ProjectsListComponent } from './projects/projects-list/projects-list.component';
+import { ProjectDetailsComponent } from './projects/project-details/project-details.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ProjectsComponent,
+    ProjectsListComponent,
+    ProjectDetailsComponent
   ],
   imports: [
     BrowserModule,

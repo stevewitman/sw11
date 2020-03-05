@@ -5,6 +5,7 @@ import { AppComponent } from './app.component';
 import { MaterialModule } from '@bb/material';
 import { UiToolbarModule } from '@bb/ui-toolbar';
 import { CoreDataModule } from '@bb/core-data';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { CoreDataModule } from '@bb/core-data';
     BrowserModule,
     MaterialModule,
     UiToolbarModule,
-    CoreDataModule
+    CoreDataModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
